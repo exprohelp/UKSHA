@@ -51,6 +51,7 @@ namespace UKSHAApi.Models
         public string SampleNo { get; set; }
         public string remark { get; set; }
     }
+    //
     public class PatientInfo : ipMobileApp
     {
         public string TestIds { get; set; }       
