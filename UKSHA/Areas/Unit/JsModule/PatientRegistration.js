@@ -151,6 +151,7 @@ function getMemberInfo() {
         }
     });
 }
+
 function GetDoctorMaster() {
     $('#tblDoctorMaster tbody').empty();
     var url = config.baseUrl + "/api/ApplicationResources/MasterQueries";
