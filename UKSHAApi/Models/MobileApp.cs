@@ -81,6 +81,7 @@ namespace UKSHAApi.Models
         public string CentreId { get; set; }       
         public string doctorId { get; set; }       
         public string doctorName { get; set; }       
+        public tyepofemployee doctorName { get; set; }       
         public string remark { get; set; }       
         public string TestCodes { get; set; }       
     }

@@ -123,6 +123,7 @@ namespace UKSHAApi.Repository.Unit
                     cmd.Parameters.Add("@CentreId", SqlDbType.VarChar, 10).Value = objBO.CentreId;
                     cmd.Parameters.Add("@doctorId", SqlDbType.VarChar, 20).Value = objBO.doctorId;
                     cmd.Parameters.Add("@doctorName", SqlDbType.VarChar, 100).Value = objBO.doctorName;
+                    cmd.Parameters.Add("@tyepofemployee", SqlDbType.VarChar, 20).Value = objBO.tyepofemployee;
                     cmd.Parameters.Add("@remark", SqlDbType.VarChar, 200).Value = objBO.remark;
                     cmd.Parameters.Add("@TestCodes", SqlDbType.VarChar, 500).Value = objBO.TestCodes;
                     cmd.Parameters.Add("@login_id", SqlDbType.VarChar, 10).Value = objBO.login_id;

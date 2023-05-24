@@ -322,6 +322,7 @@ function InsertPatient() {
         objBO.CentreId = $("#ddlCentre option:selected").val();
         objBO.doctorId = _doctorId;
         objBO.doctorName = $('#selectedDoctor').text();
+        objBO.tyepofemployee = Info.tyepofemployee;
         objBO.remark = $('#txtRemark').val();
         objBO.TestCodes = selectedTestCodes.join('|');
         objBO.login_id = Active.userId;
