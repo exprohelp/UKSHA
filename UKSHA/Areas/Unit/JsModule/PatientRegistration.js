@@ -300,7 +300,7 @@ function InsertPatient() {
         }
         var Info = JSON.parse(_memberInfo);
         var dob = Info.dob.split('-')[2] + '-' + Info.dob.split('-')[1] +'-'+ Info.dob.split('-')[0];
-
+        //TEST
         objBO.pmrssm_id = Info.pmrssm_id;
         objBO.trea_code = Info.trea_code;
         objBO.ddo_code = Info.ddo_code;
