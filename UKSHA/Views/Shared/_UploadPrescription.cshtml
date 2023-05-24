@@ -1,0 +1,138 @@
+﻿<script src="~/JsModule/_UploadPrescription.js"></script>
+<link href="~/Content/magnify/jquery.magnify.min.css" rel="stylesheet" />
+<link href="~/Content/magnify/magnify-white-theme.css" rel="stylesheet" />
+<script src="~/Content/magnify/jquery.magnify.min.js"></script>
+
+<style>
+    .UploadSection {
+        background: url(https://exprohelp.com/UKNHM/Content/img/upload.png) no-repeat center;
+        height: 260px;
+        margin-top: 45px;
+    }
+
+    #btnFileUpload {
+        margin: 142px 0 56px 225px;
+    }
+
+    .bg-danger {
+        background-color: #ffbebe;
+    }
+
+    #patientInfo .select2-container .select2-selection--single {
+        box-sizing: border-box;
+        cursor: pointer;
+        display: block;
+        height: 23px;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    #tblPatientInfo .form-control {
+        height: 22px;
+    }
+
+    .IsCancel {
+        background: #ff9090;
+    }
+
+    .newTest {
+        background: #d6efd7;
+    }
+</style>
+<div id="modalPatientInfo" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" style="width: 1245px;">
+        <!-- Modal content-->
+        <div class="modal-content" style="margin-top:0%;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="btnPresc"></div>
+            </div>
+            <div class="modal-body" style="padding: 12px 30px;">
+                <div class="row">
+                    <div class="col-md-6 form-group" style="overflow:auto;height:485px">
+                        <a data-magnify="gallery" data-src="" data-group="a" href="">
+                            <img src="" id="imgPresc" style="width:100%;cursor:zoom-in" />
+                        </a>
+                        <div class="UploadSection">
+                            <div style="width:78%;margin: auto;display:flex">
+                                <select id="ddlPresc" class="form-control"></select>
+                                <button class="btn-flat btn-warning" id="btnSubmit1" onclick="UploadPresc()" style="width:23%"><i class="fa fa-upload">&nbsp;</i>Upload</button>
+                            </div>
+                            <input type="file" id="FileUpload" onchange="IsValid(this)" style="display:none" />
+                            <button class="btn-flat btn-success" id="btnFileUpload">Browse File</button>
+                            <label id="txtFileName"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" style="height: 29px;">
+                                Patient Info
+                            </div>
+                            <div class="panel-body" style="height:465px">
+                                <div class="col-md-12 form-group">
+                                    <table class="table table-bordered" id="patientInfo">
+                                        <tr>
+                                            <th>Visit No</th>
+                                            <th>:</th>
+                                            <td id="txtVisitNo" colspan="5"></td>
+                                            @*<td style="display:none" id="txtBarcodeNo"></td>*@
+                                            <td style="display:none" id="txtCentreId"></td>                                       
+                                        </tr>
+                                        <tr>
+                                            <th>Name Of Unit</th>
+                                            <th>:</th>
+                                            <td id="txtUnitName" colspan="5"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Patient Name</th>
+                                            <th>:</th>
+                                            <td colspan="2"><input type="text" id="txtPatientName" /></td>
+
+                                            <th>Gender</th>
+                                            <th>:</th>
+                                            <td><select id="ddlGender" class="form-control"><option>Male</option><option>Female</option></select></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Mobile No</th>
+                                            <th>:</th>
+                                            <td id="txtMobileNo" colspan="2"></td>
+
+                                            <th>Age</th>
+                                            <th>:</th>
+                                            <td class="flex"><input type="text" id="txtAge" /><select id="ddlAgeType" class="form-control"><option>Year</option><option>Month</option></select></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Prescribed By</th>
+                                            <th>:</th>
+                                            <td colspan="5">
+                                                <div class="flex">
+                                                    <select id="ddlDoctor" class="form-control"></select>
+                                                    <button id="btnUpdateDoctor" class="btn-flat btn-success" style="width: 28%;" onclick="ChangeDoctor()">Change Doctor</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>                              
+                                <div class="col-md-12 form-group">
+                                    <div class="scroll" style="height: 195px;">
+                                        <table class="table table-bordered" id="tblPatientInfo">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 1%;"><input type='checkbox' /></th>
+                                                    <th>Investigation Name</th>
+                                                    <th style="width: 10%;text-align:right">Amount</th>
+                                                    <th><input type="text" class="form-control" /></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

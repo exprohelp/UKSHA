@@ -1,0 +1,358 @@
+﻿
+@{
+    ViewBag.Title = "PatientRegistration";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+<script src="~/Areas/Unit/JsModule/PatientRegistration.js?V1.3"></script>
+<style>
+    .col-md-2 {
+        width: 14%;
+    }
+    .fade-scale {
+        transform: scale(0);
+        opacity: 0;
+        -webkit-transition: all .25s linear;
+        -o-transition: all .25s linear;
+        transition: all .25s linear;
+    }
+
+        .fade-scale.in {
+            opacity: 1;
+            transform: scale(1);
+        }
+    .activeStatus {
+        text-align: center;
+        width: 100%;
+        border-radius: 40px;
+        border: none;
+        color: #fff;
+        background: #4e9d26 !important;
+        height: 24px;
+        line-height: 24px;
+    }
+
+    .activeNotStatus {
+        text-align: center;
+        width: 63%;
+        border-radius: 40px;
+        border: none;
+        color: #fff;
+        background: #c33737 !important;
+        height: 24px;
+        line-height: 24px;
+    }
+
+    .panel-primary > .panel-heading {
+        padding: 2px 10px !important;
+        color: #fff;
+        background-color: #0f85a5;
+        border-color: #0f85a5;
+    }
+
+    .btnCtrl {
+        height: 28px;
+        line-height: 0;
+    }
+
+    .btnDelete {
+        width: 18px;
+        font-size: 10px;
+        height: 16px;
+        line-height: 0;
+        padding: 0;
+    }
+
+    table td, th {
+        font-size: 12px !important;
+        padding: 0px 3px;
+    }
+
+    .bn {
+        border-radius: 0px;
+        border: 1px solid #339ff9;
+    }
+
+    .tableFixHead {
+        overflow-y: auto;
+        height: 200px;
+    }
+
+        .tableFixHead thead th {
+            position: sticky;
+            top: 0;
+        }
+
+
+    .master-title {
+        background: #ffdfdf;
+        padding: 1px 7px;
+    }
+
+    .list-title {
+        width: 100%;
+        padding: 1px 10px;
+        color: #bf7070;
+        display: block;
+        background: antiquewhite;
+    }
+    /*Panel*/
+    .panel-group .panel {
+        border-radius: 0;
+        box-shadow: none;
+        border-color: #f3eeee;
+    }
+
+    .panel-default > .panel-heading {
+        padding: 0px !important;
+        border-radius: 0;
+        color: #212121;
+        background-color: #fff;
+        border-color: #EEEEEE;
+    }
+
+    div.title-total {
+        font-size: 11px;
+        margin: 2px;
+        border: 1px solid #adc8f3;
+        padding: 5px;
+        border-radius: 4px;
+        background: #d9edf7;
+        color: #484848;
+        font-weight: 600;
+        display: inline;
+    }
+
+    .panel-title {
+        font-size: 13px;
+    }
+
+        .panel-title > a {
+            width: 90%;
+            display: block;
+            padding: 10px 2px;
+            text-decoration: none;
+        }
+
+    .more-less {
+        width: 25px;
+        margin: -7px 1px;
+        border: 2px solid #e6e4e4;
+        float: left;
+        color: #33abb7;
+        padding: 5px 4px;
+        border-radius: 40px;
+        line-height: 10px;
+        height: 25px;
+    }
+
+    .assign {
+        cursor: pointer;
+        margin: -31px 5px;
+        float: right;
+        color: #ffffff !important;
+        padding: 5px;
+    }
+
+    .total-panel {
+        float: right;
+        margin-right: 10px;
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        border-top-color: #EEEEEE;
+    }
+
+    .panel-info {
+        border-color: #ffecd2;
+    }
+</style>
+<div class="page-box" style="margin-top:10px;">
+    @Html.Partial("_UploadPrescription")
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <button class="btn btn-warning btn-xs" onclick="Clear()"><i class="fa fa-flash">&nbsp;</i>New</button>
+                    Patient Registration
+                </div>
+                <div class="panel-body" style="padding: 7px 0px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <select id="ddlCentre" class="form-control"></select>
+                                </div>                              
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>SHA Id</label>
+                                    <div class="flex">
+                                        <input type="text" id="txtSHAId" style="border: 1px solid #f0ad4e;border-radius: 0;" class=" form-control" autocomplete="off" placeholder="SHA Id" />
+                                        <button class="btn-warning bn" onclick="getMemberInfo()" id="btnAutoGen" style="width:20%;border: none;margin:0">Get</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Member Id</label>
+                                    <input type="text" id="txtMemberId" class=" form-control" disabled="disabled" placeholder="Member Id" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Member Name</label>
+                                    <input type="text" id="txtMemberName" class=" form-control" disabled="disabled" placeholder="Member Name" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Family Id</label>
+                                    <input type="text" id="txtFamilyId" class=" form-control" disabled="disabled" placeholder="Family Id" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Mobile No</label>
+                                    <input type="text" id="txtMobileNo" class=" form-control" disabled="disabled" placeholder="Mobile No" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label>DOB</label>
+                                    <input type="text" id="txtDOB" class=" form-control" disabled="disabled" placeholder="DOB" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Gender</label>
+                                    <input type="text" id="txtGender" class=" form-control" disabled="disabled" placeholder="Gender" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label>State Name</label>
+                                    <input type="text" id="txtStateName" class=" form-control" disabled="disabled" placeholder="State Name" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label>District Name</label>
+                                    <input type="text" id="txtDistrictName" class=" form-control" disabled="disabled" placeholder="District Name" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label>ABHA Id</label>
+                                    <input type="text" id="txtABHAId" class=" form-control" placeholder="ABHA Id" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Member Status</label>
+                                    <label id="txtMemberStatus"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-6">
+                            <div class="panel panel-primary" style="margin: 0 5px;height: 356px;">
+                                <div class="panel-heading">
+                                    <button class="btn btn-warning btn-xs" onclick="$('.newDoctor').slideToggle()"><i class="fa fa-flash">&nbsp;</i>New Doctor</button>
+                                    <span class="pull-right">Selected Doctor : <span id="selectedDoctor"></span></span>
+                                </div>
+                                <div class="panel-body" style="padding:7px 0">
+                                    <div class="row">
+                                        <div class="newDoctor" style="display:none">
+                                            <div class="row">
+                                                <div class="col-md-6 form-group">
+                                                    <label>Doctor Name <span class="mendatory">*</span></label>
+                                                    <input type="text" class="form-control" id="txtDoctorName" placeholder="Doctor Name" />
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label>Degree <span class="mendatory">*</span></label>
+                                                    <select id="ddlDegree" class="form-control"><option>Select</option></select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 form-group">
+                                                    <label>Specialization <span class="mendatory">*</span></label>
+                                                    <select id="ddlSpecialization" class="form-control"><option>Select</option></select>
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Mobile No.</label>
+                                                    <input type="text" class="form-control" maxlength="10" data-int id="txtMobile" placeholder="Mobile No." />
+                                                </div>
+                                                <div class="col-md-2 form-group">
+                                                    <label style="visibility:hidden">Action</label>
+                                                    <button class="btn-flat btn-success" id="btnSaveDoctor" style="background:#45bb13;padding: 4px 6px;" onclick="InsertDoctor()">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 form-group">
+                                            <div class="scroll" style="min-height:300px">
+                                                <table class="table table-bordered" id="tblDoctorMaster">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Doctor Id</th>
+                                                            <th style="padding: 2px 3px !important;"><input type="text" id="txtSearchDoctor" onkeyup="searchTable('txtSearchDoctor','tblDoctorMaster')" class="form-control" placeholder="Seach Doctor..." style="height:23px;" /></th>
+                                                            <th>MobileNo</th>
+                                                            <th>Degree</th>
+                                                            <th>Specialization</th>
+                                                            <th>CMD</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-primary" style="margin: 0 5px;height: 356px;">
+                            <div class="panel-heading">
+                                <span>Test Info</span>
+                            </div>
+                            <div class="panel-body" style="padding:0">
+                                <div class="col-md-12" style="margin-top:5px;">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-info" style="margin: 0;">
+                                                <span class="list-title"><input id="txtSearchTest" onkeyup="searchTable('txtSearchTest','tblTest')" type="text" class="form-control" style="width: 66%;height: 19px;font-size: 11px;" placeholder="Search Test by Name and Code" /> </span>
+                                                <div class="panel-body" style="height: 140px;overflow:auto;padding:0">
+                                                    <table class="table table-bordered" id="tblTest">
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="panel panel-info" style="margin-top: 5px;margin-bottom:3px;">
+                                                <span class="list-title">Selected Test List</span>
+                                                <div class="panel-body" style="height: 95px;overflow:auto;padding:0">
+                                                    <table class="table table-bordered" id="tblSelectedTest">
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" id="txtRemark" placeholder="Remark.." class="form-control" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button class="btn btn-success btnCtrl" disabled id="btnSave" onclick="InsertPatient()"><i class="fa fa-sign-in">&nbsp;</i>Submit</button>
+                                            @*<button id="btnUploadDocument" class="btn btn-warning btnCtrl" onclick="$('#modalResponse').modal('show')"><i class="fa fa-upload">&nbsp;</i>Upload</button>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalResponse" class="modal fade fade-scale" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content" style="margin-top:70%;">
+            <div class="modal-header">
+                Response Message
+                <button type="button" class="close" data-dismiss="modal">&times;</button>               
+            </div>
+            <div class="modal-body" style="padding:10px;">
+                <div class="row">
+                    <div class="col-md-12 form-group text-center">
+                        <label>Patient Registered Successfully.</label>
+                        <button class="btn btn-success btn-xs" onclick="OpenUploadPresc();"><i class="fa fa-upload">&nbsp;</i>Upload Prescription</button>
+                        <button class="btn btn-danger btn-xs" data-dismiss="modal"><i class="fa fa-upload">&nbsp;</i>Close</button>
+                        <label style="margin: 9px 6px;font-size: 12px;padding: 2px;">Note : you can also upload document by <i class="text-danger">Pending Upload</i> Menu.</label>
+                    </div>                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
