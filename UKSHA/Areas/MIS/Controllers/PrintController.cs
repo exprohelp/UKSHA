@@ -7,18 +7,19 @@ using System.Web;
 using System.Web.Mvc;
 using UKSHA.App_Start;
 using UKSHA.Repository;
+using UKSHAApi.Models;
 
 namespace UKSHA.Areas.MIS.Controllers
 {
     public class PrintController : Controller
     {
-        public FileResult ServiceReceipt(string visitNo)
+        public FileResult PrintBill(string visitNo)
         {
             PdfGenerator pdfConverter = new PdfGenerator();
-            ServiceQueries obj = new ServiceQueries();
-            obj.prm_1 = visitNo;
-            obj.Logic = "PrintServiceReceipt";
-            UKSHAApi.Models.dataSet dsResult = APIProxy.CallWebApiMethod("Service/Opd_ServiceQueries", obj);
+            ipReport obj = new ipReport();
+            obj.VisitNo = visitNo;
+            obj.Logic = "PrintBill";
+            dataSet dsResult = APIProxy.CallWebApiMethod("Report/ChandanMIS_ReportQueries", obj);
 
             DataSet ds = dsResult.ResultSet;
             string _result = string.Empty;

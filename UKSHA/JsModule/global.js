@@ -11,7 +11,8 @@ $(document).ready(function () {
 	inputLimit();
 	onlyInt();
 	loading();
-	onlyChar();
+    onlyChar();
+    DisableRightClick();
 });
 var Active = {
 	userName: sessionStorage.getItem('userName'),
@@ -38,7 +39,33 @@ function Global_DownloadExcel(Url, objBO, fileName) {
 	};
 	ajax.send(JSON.stringify(objBO));
 }
-
+function DisableRightClick() {   
+        $(window).on('keydown', function (event) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                return false;  //Prevent from ctrl+shift+i
+            }
+            else if (event.ctrlKey && event.keyCode == 85) {
+                return false;  //Prevent from ctrl+U
+            }
+            else if (event.ctrlKey && event.keyCode == 73) {
+                return false;  //Prevent from ctrl+shift+i
+            }
+        });
+        $("body").on("contextmenu", function (e) {
+            return false;
+        });
+        $(document).keyup(function (evtobj) {
+            if (!(evtobj.altKey || evtobj.ctrlKey || evtobj.shiftKey)) {
+                if (evtobj.keyCode == 16) { return false; }
+                if (evtobj.keyCode == 17) { return false; }
+                if (evtobj.keyCode == 51) { return false; }
+                //$("body").append("Test Code : "+evtobj.keyCode + " ");
+            }
+        });     
+}
 function Global_DownloadPdf(Url, objBO, fileName) {
 	$('#LineLoader').show();
 	var ajax = new XMLHttpRequest();
