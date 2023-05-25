@@ -164,6 +164,7 @@
     <Compile Include="Areas\ApplicationResource\Controllers\AdminController.cs" />
     <Compile Include="Areas\Invoice\Controllers\InvoiceController.cs" />
     <Compile Include="Areas\Invoice\InvoiceAreaRegistration.cs" />
+    <Compile Include="Areas\MIS\Controllers\PrintController.cs" />
     <Compile Include="Areas\MIS\Controllers\ReportController.cs" />
     <Compile Include="Areas\MIS\MISAreaRegistration.cs" />
     <Compile Include="Areas\Unit\Controllers\LabController.cs" />
@@ -215,6 +216,7 @@
     <Folder Include="Areas\Invoice\Models\" />
     <Folder Include="Areas\Invoice\Views\Shared\" />
     <Folder Include="Areas\MIS\Models\" />
+    <Folder Include="Areas\MIS\Views\Print\" />
     <Folder Include="Areas\MIS\Views\Shared\" />
     <Folder Include="Areas\Unit\Models\" />
     <Folder Include="Areas\Unit\Views\Shared\" />

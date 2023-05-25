@@ -62,6 +62,7 @@ namespace UKSHAApi.Models
         public string MobileNo { get; set; }       
         public string pmrssm_id { get; set; }       
         public int trea_code { get; set; }       
+        public string trea_name { get; set; }       
         public int ddo_code { get; set; }       
         public string ddo_name { get; set; }       
         public string family_id { get; set; }       
@@ -81,7 +82,7 @@ namespace UKSHAApi.Models
         public string CentreId { get; set; }       
         public string doctorId { get; set; }       
         public string doctorName { get; set; }       
-        public tyepofemployee doctorName { get; set; }       
+        public string tyepofemployee { get; set; }       
         public string remark { get; set; }       
         public string TestCodes { get; set; }       
     }

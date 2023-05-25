@@ -104,6 +104,7 @@ namespace UKSHAApi.Repository.Unit
                     cmd.CommandTimeout = 2500;
                     cmd.Parameters.Add("@pmrssm_id", SqlDbType.VarChar, 20).Value = objBO.pmrssm_id;
                     cmd.Parameters.Add("@trea_code", SqlDbType.Int).Value = objBO.trea_code;
+                    cmd.Parameters.Add("@trea_name", SqlDbType.VarChar, 255).Value = objBO.trea_name;
                     cmd.Parameters.Add("@ddo_code", SqlDbType.Int).Value = objBO.ddo_code;
                     cmd.Parameters.Add("@ddo_name", SqlDbType.VarChar, 255).Value = objBO.ddo_name;
                     cmd.Parameters.Add("@family_id", SqlDbType.VarChar, 50).Value = objBO.family_id;
@@ -136,6 +137,13 @@ namespace UKSHAApi.Repository.Unit
                         cmd.ExecuteNonQuery();
                         processInfo = (string)cmd.Parameters["@result"].Value.ToString();
                         con.Close();
+                        if (processInfo.Contains("Success"))
+                        {
+                            SmsClass smsClass = new SmsClass();
+                            var visitNo = processInfo.Split('|')[1];
+                            var msg = "You are registered under SHA, Uttarakhand Contract. Your Visit No. is "+ visitNo + ". Download Chandan 24x7 Mobile App For Reports. : Chandan";
+                            var res = smsClass.SendSms(objBO.mobile_member, msg);
+                        }
                     }
                     catch (SqlException sqlEx)
                     {

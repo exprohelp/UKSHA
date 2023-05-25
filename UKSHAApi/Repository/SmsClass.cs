@@ -22,24 +22,9 @@ namespace UKSHAApi.Repository
 			try
 			{
                 string smstext = string.Empty;
-               
-                Admin repo = new Admin();
-                ipAdmin objBO = new ipAdmin();
-                objBO.Logic = "ActiveSmsProvider";
-                dataSet ds = repo.MasterQueries(objBO);
-                providerName = ds.ResultSet.Tables[0].Rows[0].Field<string>(0);
-                if (ds.ResultSet.Tables[0].Rows[0].Field<string>(0).Contains("ValueFirst"))
-                {
-                    smstext = msg;
-                    url = "https://http.myvfirst.com/smpp/sendsms?username=chndnotphtp&password=chn2130O&to=" + MobileNoByComaSeperated + "&from=chandn&text=" + smstext + "";
-                }
-                else if (ds.ResultSet.Tables[0].Rows[0].Field<string>(0).Contains("NexGen"))
-                {
-                    smstext = "to=91"+MobileNoByComaSeperated+"&indiaDltContentTemplateId=1007789497012223999&indiaDltPrincipalEntityId=1001969186191969669&";
-                    smstext += "text="+msg;
-                    url = "https://api2.nexgplatforms.com/sms/1/text/query?username=ChndnApiT&password=ExPro@1967&from=CHANDN&" + smstext;
-                }
 
+                smstext = msg;
+                url = "https://http.myvfirst.com/smpp/sendsms?username=chndnotphtp&password=chn2130O&to=" + MobileNoByComaSeperated + "&from=chandn&text=" + smstext + "";
 
                 WebRequest request = WebRequest.Create(url);
 				request.Method = "GET";

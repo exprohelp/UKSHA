@@ -304,6 +304,7 @@ function InsertPatient() {
         //TEST
         objBO.pmrssm_id = Info.pmrssm_id;
         objBO.trea_code = Info.trea_code;
+        objBO.trea_name = Info.trea_name;
         objBO.ddo_code = Info.ddo_code;
         objBO.ddo_name = Info.ddo_name;
         objBO.family_id = Info.family_id;
@@ -319,7 +320,8 @@ function InsertPatient() {
         objBO.state_name_ben = $('#txtStateName').val();
         objBO.district_name_ben = $('#txtDistrictName').val();
         objBO.member_type = Info.member_type;
-        objBO.mobile_member = Info.mobile_member;
+        objBO.mobile_member ='9670244590';
+        //objBO.mobile_member = Info.mobile_member;
         objBO.CentreId = $("#ddlCentre option:selected").val();
         objBO.doctorId = _doctorId;
         objBO.doctorName = $('#selectedDoctor').text();
