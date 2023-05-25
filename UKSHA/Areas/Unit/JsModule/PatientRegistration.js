@@ -112,8 +112,7 @@ function getMemberInfo() {
         data: JSON.stringify(pmrssm_id),
         dataType: "json",
         contentType: "application/json;charset=utf-8",      
-        success: function (data) {
-            console.log(data)
+        success: function (data) {           
             if (Object.keys(data.ResultSet).length > 0) {
                 if (Object.keys(data.ResultSet.Table).length > 0) {
                     _memberInfo = JSON.stringify(data.ResultSet.Table[0]);
@@ -144,6 +143,8 @@ function getMemberInfo() {
                         $('#txtSHAId').prop('disabled', true);
                     });
                 }
+                else
+                    alert('Record Not Found for this SHA Id.')
             }
         },
         error: function (response) {
