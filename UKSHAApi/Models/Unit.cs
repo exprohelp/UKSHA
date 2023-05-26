@@ -51,7 +51,7 @@ namespace UKSHAApi.Models
 	}
     public class ipMemberKey
     {
-        public string pmrssm_id { get; set; }
+        public string Id { get; set; }
         public string AuthKey { get; set; }
     }
 }

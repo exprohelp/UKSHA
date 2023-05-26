@@ -251,6 +251,7 @@
     <Compile Include="Repository\SmsClass.cs" />
     <Compile Include="Repository\SMSDataLayer.cs" />
     <Compile Include="Repository\Unit\Lab.cs" />
+    <Compile Include="Repository\Utility\EncryptionHelper.cs" />
     <Compile Include="Repository\Utility\UploadClass.cs" />
     <Compile Include="Web References\LISProxy\Reference.cs">
       <AutoGen>True</AutoGen>

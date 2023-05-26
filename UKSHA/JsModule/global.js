@@ -12,7 +12,7 @@ $(document).ready(function () {
 	onlyInt();
 	loading();
     onlyChar();
-    DisableRightClick();
+   // DisableRightClick();
 });
 var Active = {
 	userName: sessionStorage.getItem('userName'),

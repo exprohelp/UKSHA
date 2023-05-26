@@ -139,12 +139,11 @@ function getMemberInfo() {
                             $('#txtMemberStatus').html('<i class="fa fa-close">&nbsp;</i>Not Active').addClass('activeNotStatus');
                             $('#btnSave').prop('disabled', true);
                         }
-
                         $('#txtSHAId').prop('disabled', true);
                     });
                 }
                 else
-                    alert('Record Not Found for this SHA Id.')
+                    alert('Record Not Found for this SHA Id.');
             }
         },
         error: function (response) {
@@ -443,4 +442,13 @@ function getMemberInfo1() {
             alert('Server Error...!');
         }
     });
+}
+function PrintBill() {
+    if (_visitNoUploadPresc.length < 2) {
+        alert('Visit No Not Found.');
+        return
+    }
+    //var url = config.rootUrl + "/MIS/Print/PrintBillByKey?visitNo=" + _visitNoUploadPresc;
+    var url = config.rootUrl + "/MIS/Print/PrintBill?visitNo=" + _visitNoUploadPresc;
+    window.open(url, '_blank');
 }

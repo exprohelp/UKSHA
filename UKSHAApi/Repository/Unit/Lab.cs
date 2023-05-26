@@ -14,7 +14,7 @@ namespace UKSHAApi.Repository.Unit
         {
             ipMemberKey obj = new ipMemberKey();
             obj.AuthKey = "XBKJGFPPUHBC178HJKLP984LKJGDCNMLK9087640";
-            obj.pmrssm_id = pmrssm_id;
+            obj.Id = pmrssm_id;
             dataSet dsResult = APIProxy.CallWebApiMethod("SHA/GetMemberInformationJSON", obj);
             return dsResult;           
         }

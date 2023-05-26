@@ -3,7 +3,7 @@
     ViewBag.Title = "PatientRegistration";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
-<script src="~/Areas/Unit/JsModule/PatientRegistration.js?V1.3"></script>
+<script src="~/Areas/Unit/JsModule/PatientRegistration.js?V1.4"></script>
 <style>
     .col-md-2 {
         width: 14%;
@@ -205,7 +205,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>Mobile No</label>
-                                    <input type="text" id="txtMobileNo" class=" form-control" disabled="disabled" placeholder="Mobile No" />
+                                    <input type="text" id="txtMobileNo" class=" form-control" placeholder="Mobile No" />
                                 </div>
                                 <div class="col-md-2">
                                     <label>DOB</label>
@@ -317,12 +317,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-9">
+                                        <div class="col-md-7">
                                             <input type="text" id="txtRemark" placeholder="Remark.." class="form-control" />
                                         </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-success btnCtrl" disabled id="btnSave" onclick="InsertPatient()"><i class="fa fa-sign-in">&nbsp;</i>Submit</button>
-                                            @*<button id="btnUploadDocument" class="btn btn-warning btnCtrl" onclick="$('#modalResponse').modal('show')"><i class="fa fa-upload">&nbsp;</i>Upload</button>*@
+                                        <div class="col-md-5">
+                                            <div class="flex">
+                                                <button class="btn btn-success btnCtrl" disabled id="btnSave" onclick="InsertPatient()"><i class="fa fa-sign-in">&nbsp;</i>Submit</button>&nbsp;
+                                                <button id="btnPrintBill" class="btn btn-warning btnCtrl" onclick="PrintBill()"><i class="fa fa-print">&nbsp;</i>Print Bill</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
