@@ -3,11 +3,12 @@
     ViewBag.Title = "PatientRegistration";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
-<script src="~/Areas/Unit/JsModule/PatientRegistration.js?V1.4"></script>
+<script src="~/Areas/Unit/JsModule/PatientRegistration.js?V1.5"></script>
 <style>
     .col-md-2 {
         width: 14%;
     }
+
     .fade-scale {
         transform: scale(0);
         opacity: 0;
@@ -20,6 +21,7 @@
             opacity: 1;
             transform: scale(1);
         }
+
     .activeStatus {
         text-align: center;
         width: 100%;
@@ -181,7 +183,10 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <select id="ddlCentre" class="form-control"></select>
-                                </div>                              
+                                </div>
+                                <div class="col-md-7">
+                                    <button class="btn btn-success btn-xs pull-right" onclick="GetSGHSEmpContributionData()"><i class="fa fa-sign-in">&nbsp;</i>Contribution Info</button>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
@@ -342,7 +347,7 @@
         <div class="modal-content" style="margin-top:70%;">
             <div class="modal-header">
                 Response Message
-                <button type="button" class="close" data-dismiss="modal">&times;</button>               
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body" style="padding:10px;">
                 <div class="row">
@@ -351,7 +356,35 @@
                         <button class="btn btn-success btn-xs" onclick="OpenUploadPresc();"><i class="fa fa-upload">&nbsp;</i>Upload Prescription</button>
                         <button class="btn btn-danger btn-xs" data-dismiss="modal"><i class="fa fa-upload">&nbsp;</i>Close</button>
                         <label style="margin: 9px 6px;font-size: 12px;padding: 2px;">Note : you can also upload document by <i class="text-danger">Pending Upload</i> Menu.</label>
-                    </div>                  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalContribution" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 430px;">
+        <!-- Modal content-->
+        <div class="modal-content" style="margin-top:4%;">
+            <div class="modal-header">
+                SHA Contribution Info
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 12px 30px;">
+                <div class="row">                 
+                    <div class="col-md-12 form-group" style="max-height: 500px;overflow: auto;">
+                        <table class="table" id="tblContInfo">
+                            <thead>
+                                <tr>
+                                    <th>Emp Name</th>
+                                    <th>Contribution Month</th>
+                                    <th class="text-right">Contribution Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

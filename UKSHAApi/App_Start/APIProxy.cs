@@ -38,6 +38,32 @@ namespace UKSHAApi.App_Start
             }
             return ds;
         }
+        public static dataSet2 CallWebApiMethod2(string methodRoute, Object obj)
+        {
+            dataSet2 ds = new dataSet2();
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    client.BaseAddress = new Uri(Baseurl);
+                    HttpResponseMessage response = client.PostAsJsonAsync("api/" + methodRoute + "", obj).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string response_data = response.Content.ReadAsStringAsync().Result;
+                        ds = JsonConvert.DeserializeObject<dataSet2>(response_data, new JsonSerializerSettings
+                        {
+                            NullValueHandling = NullValueHandling.Ignore,
+                            MissingMemberHandling = MissingMemberHandling.Ignore,
+                            Formatting = Formatting.None,
+                            DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                            FloatParseHandling = FloatParseHandling.Decimal
+                        });
+                    }
+                }
+                catch (Exception ex) { ds.record = null; ds.Msg = ex.Message; }
+            }
+            return ds;
+        }
 
     }
 }

@@ -18,6 +18,14 @@ namespace UKSHAApi.Repository.Unit
             dataSet dsResult = APIProxy.CallWebApiMethod("SHA/GetMemberInformationJSON", obj);
             return dsResult;           
         }
+        public dataSet2 GetSGHSEmpContributionData(string emp_code)
+        {
+            ipMemberKey obj = new ipMemberKey();
+            obj.AuthKey = "XBKJGFPPUHBC178HJKLP984LKJGDCNMLK9087640";
+            obj.Id = emp_code;
+            dataSet2 dsResult = APIProxy.CallWebApiMethod2("SHA/GetSGHSEmpContributionData", obj);
+            return dsResult;
+        }
         public dataSet Unit_VerificationQueries(ipUnit objBO)
         {
             dataSet dsObj = new dataSet();

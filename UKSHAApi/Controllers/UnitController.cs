@@ -22,6 +22,13 @@ namespace UKSHAApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, ds);
         }
         [HttpPost]
+        [Route("GetSGHSEmpContributionData")]
+        public HttpResponseMessage GetSGHSEmpContributionData([FromBody] string emp_code)
+        {
+            dataSet2 ds = repositoryLab.GetSGHSEmpContributionData(emp_code);
+            return Request.CreateResponse(HttpStatusCode.OK, ds);
+        }
+        [HttpPost]
         [Route("LabQueries")]
         public HttpResponseMessage LabQueries([FromBody] ipUnit objBO)
         {

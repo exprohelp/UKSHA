@@ -47,5 +47,19 @@ namespace UKSHAApi.Models
     {
         public string Msg { get; set; }
         public DataSet ResultSet { get; set; }
+    }  
+    public class Record
+    {
+        public string Emp_code { get; set; }
+        public string Emp_name { get; set; }
+        public string Contribution_month { get; set; }
+        public string Contribution_amount { get; set; }
+    }
+
+    public class dataSet2
+    {
+        public string Msg { get; set; }
+        public List<Record> record { get; set; }
+        public string RespMsg { get; set; }
     }
 }

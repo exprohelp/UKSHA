@@ -2,6 +2,7 @@
 var _memberInfo = '';
 var _pmrssmId = '';
 var _isActive = '';
+var _emp_code = '';
 $(document).ready(function () {
     $('#txtSHAId').on('keyup', function (e) {
         if (e.keyCode == 13)
@@ -98,6 +99,7 @@ function GetDegreeSpec() {
     });
 }
 function getMemberInfo() {
+    _emp_code = "";
     if ($('#txtSHAId').val() == '') {
         alert('Please Provide SHA Id');
         return
@@ -112,7 +114,8 @@ function getMemberInfo() {
         data: JSON.stringify(pmrssm_id),
         dataType: "json",
         contentType: "application/json;charset=utf-8",      
-        success: function (data) {           
+        success: function (data) {
+            console.log(data)
             if (Object.keys(data.ResultSet).length > 0) {
                 if (Object.keys(data.ResultSet.Table).length > 0) {
                     _memberInfo = JSON.stringify(data.ResultSet.Table[0]);
@@ -121,6 +124,7 @@ function getMemberInfo() {
                         $('#txtMemberName').val(val.member_name_eng);
                         $('#txtFamilyId').val(val.family_id);
                         $('#txtMobileNo').val(val.mobile_member);
+                        _emp_code = val.empcode;
                         $('#txtDOB').val(val.dob);
                         if (val.gender == 'F')
                             $('#txtGender').val('Female');
@@ -151,7 +155,43 @@ function getMemberInfo() {
         }
     });
 }
-
+function GetSGHSEmpContributionData() {  
+    if (_emp_code == '') {
+        alert('Emp Code Not Found.')
+        return
+    }
+    $('#tblContInfo tbody').empty();
+    var url = config.baseUrl + "/api/Unit/GetSGHSEmpContributionData";
+    var AuthKey = 'XBKJGFPPUHBC178HJKLP984LKJGDCNMLK9087640';
+    var emp_code = _emp_code;
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: JSON.stringify(emp_code),
+        dataType: "json",
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            console.log(data)
+            if (data.record.length > 0) {
+                var tbody = '';
+                var count = 0;
+                $.each(data.record, function (key, val) {
+                    count++;
+                    tbody += '<tr>';
+                    tbody += '<td>' + val.Emp_name + '</td>';
+                    tbody += '<td>' + val.Contribution_month + '</td>';
+                    tbody += '<td class="text-right">' + val.Contribution_amount + '</td>';
+                    tbody += '</tr>';
+                });
+                $('#tblContInfo tbody').append(tbody);
+                $('#modalContribution').modal('show');
+            }
+        },
+        error: function (response) {
+            alert('Server Error...!');
+        }
+    });
+}
 function GetDoctorMaster() {
     $('#tblDoctorMaster tbody').empty();
     var url = config.baseUrl + "/api/ApplicationResources/MasterQueries";
