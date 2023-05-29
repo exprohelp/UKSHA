@@ -9,8 +9,7 @@ $(document).ready(function () {
             getMemberInfo()
     });
 
-    GetCenterMaster();
-    GetDoctorMaster();
+    GetCenterMaster();   
     GetTestMaster();
     GetDegreeSpec();
 
@@ -59,6 +58,7 @@ function GetCenterMaster() {
                     $("#ddlCentre").append($("<option></option>").val(val.centreId).html(val.centre_name));
                 });
                 $("#ddlCentre").select2();
+                GetDoctorMaster();
             }
         },
         error: function (response) {
@@ -204,7 +204,7 @@ function GetDoctorMaster() {
     objBO.Prm1 = $("#ddlCentre option:selected").val();
     objBO.Prm2 = '-';
     objBO.login_id = Active.userId;
-    objBO.Logic = "GetDoctorMaster";
+    objBO.Logic = "DoctorInfoForPatientRegistration";
     $.ajax({
         method: "POST",
         url: url,
