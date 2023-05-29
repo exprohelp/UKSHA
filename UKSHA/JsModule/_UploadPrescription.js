@@ -270,6 +270,10 @@ function PatientInfo() {
     });
 }
 function UploadPresc() {
+    if ($('#ddlPresc option:selected').text() == 'Select') {
+        alert('Please Select Prescription Type');
+        return
+    }
     if ($('input[id=FileUpload]')[0].files.length > 0) {
         var url = config.baseUrl + "/api/Utility/UploadPrescription";
         var objBO = {};

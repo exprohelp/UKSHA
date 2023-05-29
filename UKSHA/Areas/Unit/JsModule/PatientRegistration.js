@@ -56,7 +56,7 @@ function GetCenterMaster() {
         success: function (data) {
             if (data.ResultSet.Table.length > 0) {
                 $.each(data.ResultSet.Table, function (key, val) {
-                    $("#ddlCentre").append($("<option></option>").val(val.centreId).html(val.centre_name));                   
+                    $("#ddlCentre").append($("<option></option>").val(val.centreId).html(val.centre_name));
                 });
                 $("#ddlCentre").select2();
             }
@@ -113,7 +113,7 @@ function getMemberInfo() {
         url: url,
         data: JSON.stringify(pmrssm_id),
         dataType: "json",
-        contentType: "application/json;charset=utf-8",      
+        contentType: "application/json;charset=utf-8",
         success: function (data) {
             console.log(data)
             if (Object.keys(data.ResultSet).length > 0) {
@@ -125,7 +125,12 @@ function getMemberInfo() {
                         $('#txtFamilyId').val(val.family_id);
                         $('#txtMobileNo').val(val.mobile_member);
                         _emp_code = val.empcode;
-                        $('#txtDOB').val(val.dob);
+                        if (val.dob==null) {
+                            $('#txtDOB').val(val.dob).prop('disabled', false);
+                        }
+                        else {
+                            $('#txtDOB').val(val.dob).prop('disabled', true);
+                        }
                         if (val.gender == 'F')
                             $('#txtGender').val('Female');
                         else
@@ -155,7 +160,7 @@ function getMemberInfo() {
         }
     });
 }
-function GetSGHSEmpContributionData() {  
+function GetSGHSEmpContributionData() {
     if (_emp_code == '') {
         alert('Emp Code Not Found.')
         return
@@ -206,7 +211,7 @@ function GetDoctorMaster() {
         data: JSON.stringify(objBO),
         dataType: "json",
         contentType: "application/json;charset=utf-8",
-        success: function (data) {           
+        success: function (data) {
             if (data.ResultSet.Table.length > 0) {
                 if (data.ResultSet.Table.length > 0) {
                     var tbody = '';
@@ -311,7 +316,7 @@ function InsertDoctor() {
 
 }
 function InsertPatient() {
-    if (confirm('Are you sure to Submit?')) {        
+    if (confirm('Are you sure to Submit?')) {
         if ($('#txtMemberId').val() == '') {
             alert('Please Provide Member Info.');
             return
@@ -329,6 +334,11 @@ function InsertPatient() {
             alert('Please Select Test.');
             return
         }
+        if ($('#txtDOB').val() == '') {
+            alert('Please Select DOB.');
+            $('#txtDOB').focus();
+            return
+        }
         var url = config.baseUrl + "/api/Unit/Register_Patient";
         var objBO = {};
         var selectedTestCodes = [];
@@ -340,7 +350,7 @@ function InsertPatient() {
             return
         }
         var Info = JSON.parse(_memberInfo);
-        var dob = Info.dob.split('-')[2] + '-' + Info.dob.split('-')[1] +'-'+ Info.dob.split('-')[0];
+        var dob = Info.dob.split('-')[2] + '-' + Info.dob.split('-')[1] + '-' + Info.dob.split('-')[0];
         //TEST
         objBO.pmrssm_id = Info.pmrssm_id;
         objBO.trea_code = Info.trea_code;
@@ -352,15 +362,15 @@ function InsertPatient() {
         objBO.member_id = Info.member_id;
         objBO.ABHA_Id = $('#txtABHAId').val();
         objBO.member_name_eng = $('#txtMemberName').val();
-        objBO.dob = dob;
-        objBO.gender = (Info.gender=='M')?'Male':'Female';
+        objBO.dob = $('#txtDOB').val();
+        objBO.gender = (Info.gender == 'M') ? 'Male' : 'Female';
         objBO.relation = Info.relation;
         objBO.care_of_type_dec = Info.care_of_type_dec;
         objBO.rural_urban_ben = Info.rural_urban_ben;
         objBO.state_name_ben = $('#txtStateName').val();
         objBO.district_name_ben = $('#txtDistrictName').val();
         objBO.member_type = Info.member_type;
-        objBO.mobile_member ='9670244590';
+        objBO.mobile_member = '9670244590';
         //objBO.mobile_member = Info.mobile_member;
         objBO.CentreId = $("#ddlCentre option:selected").val();
         objBO.doctorId = _doctorId;
@@ -378,9 +388,9 @@ function InsertPatient() {
             contentType: "application/json;charset=utf-8",
             success: function (data) {
                 if (data.includes('Success')) {
-                    _visitNoUploadPresc = data.split('|')[1];                                       
-                    _centerIdUploadPresc = $("#ddlCentre option:selected").val();                                       
-                    Clear();  
+                    _visitNoUploadPresc = data.split('|')[1];
+                    _centerIdUploadPresc = $("#ddlCentre option:selected").val();
+                    Clear();
                     $('#modalResponse').modal('show');
                 }
                 else {
@@ -399,8 +409,8 @@ function OpenUploadPresc() {
     $('#modalResponse').modal('hide')
 }
 function doctorSelection(elem) {
-      _doctorId = $(elem).closest('tr').find('td:eq(0)').text();
-    $('#selectedDoctor').text($(elem).closest('tr').find('td:eq(1)').text());  
+    _doctorId = $(elem).closest('tr').find('td:eq(0)').text();
+    $('#selectedDoctor').text($(elem).closest('tr').find('td:eq(1)').text());
 }
 
 function Validation() {
@@ -444,29 +454,29 @@ function Clear() {
     $('#txtMemberStatus').removeClass('activeStatus').removeClass('activeNotStatus');
 }
 
-function getMemberInfo1() {  
+function getMemberInfo1() {
     //var url = "http://103.116.27.113/AYUSH_LabAP/api/SHA/SyncChandanPatientData"; 
-    var url =config.baseUrl+ "/api/SHA/SyncChandanPatientData"; 
+    var url = config.baseUrl + "/api/SHA/SyncChandanPatientData";
     var objBO = {};
-    objBO.SGHS_Card= 'SGHSCard5764',
-    objBO.abhaNo= 'AbhaNo789',
-    objBO.claim_id= 'CLM345',
-    objBO.visit_id= 'VST345',
-    objBO.benef_Name= 'Ajeet Kumar Maurya',
-    objBO.tyepOfEmployee= 'REGULAR',
-    objBO.empcode= 'CHCL-00631',
-    objBO.d_o_b= '1993-05-03',
-    objBO.depttCode= 'depttCode123',
-    objBO.depttName= 'depttName123',
-    objBO.tres_code= 'tresCode1234',
-    objBO.tres_Name= 'tresName123',
-    objBO.totalcost= 3500,
-    objBO.discount= 10,
-    objBO.net= 400,
-    objBO.billFile= '-',
-    objBO.prescrFile= '-',
-    objBO.vendorID= 'VDR123',
-    objBO.PayVendSyncFlag= 'Y',
+    objBO.SGHS_Card = 'SGHSCard5764',
+        objBO.abhaNo = 'AbhaNo789',
+        objBO.claim_id = 'CLM345',
+        objBO.visit_id = 'VST345',
+        objBO.benef_Name = 'Ajeet Kumar Maurya',
+        objBO.tyepOfEmployee = 'REGULAR',
+        objBO.empcode = 'CHCL-00631',
+        objBO.d_o_b = '1993-05-03',
+        objBO.depttCode = 'depttCode123',
+        objBO.depttName = 'depttName123',
+        objBO.tres_code = 'tresCode1234',
+        objBO.tres_Name = 'tresName123',
+        objBO.totalcost = 3500,
+        objBO.discount = 10,
+        objBO.net = 400,
+        objBO.billFile = '-',
+        objBO.prescrFile = '-',
+        objBO.vendorID = 'VDR123',
+        objBO.PayVendSyncFlag = 'Y',
         objBO.PayVendSyncDate = '2023-05-18'
 
     $.ajax({
