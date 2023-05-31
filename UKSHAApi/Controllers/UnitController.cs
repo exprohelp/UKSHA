@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using UKSHAApi.Models;
+using UKSHAApi.Repository.MobileApp;
 using UKSHAApi.Repository.Unit;
 
 namespace UKSHAApi.Controllers
@@ -13,6 +14,7 @@ namespace UKSHAApi.Controllers
     public class UnitController : ApiController
     {
         private Lab repositoryLab = new Lab();
+        private LISDBLayer repositoryLisDBLayer = new LISDBLayer();
 
         [HttpPost]
         [Route("getMemberInfo")]
@@ -55,6 +57,13 @@ namespace UKSHAApi.Controllers
         {
             string result = repositoryLab.Unit_InsertUpdateVerification(objBO);
             return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+        [HttpPost]
+        [Route("ITDoseChandanBulkSync")]
+        public HttpResponseMessage ITDoseChandanBulkSync([FromBody] ipUnit objBO)
+        {
+            dataSet ds = repositoryLisDBLayer.ITDoseChandanBulkSync(objBO);
+            return Request.CreateResponse(HttpStatusCode.OK, ds);
         }
     }
 }

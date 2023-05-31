@@ -141,7 +141,7 @@ namespace UKSHAApi.Repository.MobileApp
             qry += " pli.ApprovedName ApprovedBy, cm1.Centre AS ApprovedByLab,ItemID_Interface ";
             qry += " FROM patient_labinvestigation_opd pli ";
             qry += " INNER JOIN centre_master cm1 ON cm1.CentreID = pli.TestCentreID ";
-            qry += " INNER JOIN centre_master cm ON cm.CentreID = pli.CentreID AND cm.IntegrationType = 'NHM-UK' ";
+            qry += " INNER JOIN centre_master cm ON cm.CentreID = pli.CentreID AND cm.IntegrationType = 'SHA' ";
             qry += " WHERE pli.ApprovedDate BETWEEN '" + objBO.from + "' AND '" + objBO.to + "' ";
             dataSet ds = ExecuteDataset(qry);
 
@@ -229,7 +229,7 @@ namespace UKSHAApi.Repository.MobileApp
             }
             finally { con.Close(); }
             return processInfo;
-        }
+        }        
         public dataSet ExecuteDataset(string commandText)
         {
             MySqlConnection con = new MySqlConnection(GlobalConfig.ConStr_LISByItDose);

@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -48,7 +47,17 @@ namespace UKSHAApi.Controllers
                 ipDocumentInfo obj = JsonConvert.DeserializeObject<ipDocumentInfo>(json);
                 //Image to be send at second or 1 index parameter  
                 byte[] fileBytes = await filesReadToProvider.Contents[1].ReadAsByteArrayAsync();
-                ss.Message = UploadClass.UploadPrescription(out outFileName, obj.CentreId, obj.VisitNo, fileBytes, obj.ImageName);
+                string FileName = filesReadToProvider.Contents[1].Headers.ContentDisposition.FileName.ToString().Replace("\"","");
+                if (fileBytes.Length > 10)
+                {
+                    FileInfo fi = new FileInfo(FileName);
+                    obj.ImageName = obj.doc_name + fi.Extension;
+                    ss.Message = UploadClass.UploadPrescription(out outFileName, obj.CentreId, obj.VisitNo, fileBytes, obj.ImageName);
+                }
+                else
+                {
+                    ss.Message = "File Not Choosen.";
+                }
                 ss.doc_location = outFileName;
                 response = Request.CreateResponse(HttpStatusCode.OK, ss);
                 if (ss.Message.Contains("Success"))

@@ -21,5 +21,9 @@ namespace UKSHA.Areas.Unit.Controllers
         {
             return View();
         }
+        public ActionResult ITDoseBulkSync()
+        {
+            return View();
+        }
     }
 }

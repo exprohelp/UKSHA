@@ -120,6 +120,7 @@
     <Content Include="Areas\MIS\JsModule\TatReport.js" />
     <Content Include="Areas\MIS\JsModule\TestAnalysis.js" />
     <Content Include="Areas\Unit\JsModule\CancelTest.js" />
+    <Content Include="Areas\Unit\JsModule\ITDoseBulkSync.js" />
     <Content Include="Areas\Unit\JsModule\PatientRegistration.js" />
     <Content Include="Areas\Unit\JsModule\PendingUpload.js" />
     <Content Include="Content\css\custom.css" />
@@ -197,6 +198,7 @@
     <Content Include="Areas\Invoice\Views\web.config" />
     <Content Include="Areas\Invoice\Views\Invoice\InvoiceSummary.cshtml" />
     <Content Include="Areas\MIS\Views\Report\RawData.cshtml" />
+    <Content Include="Areas\Unit\Views\Lab\ITDoseBulkSync.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Shared\_header.cshtml" />

@@ -25,8 +25,8 @@ namespace UKSHAApi.Models
 		public decimal Amount { get; set; }
 		public string Prm1 { get; set; }
 		public string Prm2 { get; set; }
-		public DateTime from { get; set; }
-		public DateTime to { get; set; }
+		public string from { get; set; }
+		public string to { get; set; }
 		public int IsActive { get; set; }
 		public string login_id { get; set; }
 		public string Logic { get; set; }

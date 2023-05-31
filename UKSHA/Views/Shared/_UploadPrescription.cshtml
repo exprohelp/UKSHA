@@ -58,7 +58,7 @@
                                 <select id="ddlPresc" class="form-control"></select>
                                 <button class="btn-flat btn-warning" id="btnSubmit1" onclick="UploadPresc()" style="width:23%"><i class="fa fa-upload">&nbsp;</i>Upload</button>
                             </div>
-                            <input type="file" id="FileUpload" onchange="IsValid(this)" style="display:none" />
+                            <input type="file" id="FileUpload" accept=".jpg,.png,.jpeg" style="display:none" />
                             <button class="btn-flat btn-success" id="btnFileUpload">Browse File</button>
                             <label id="txtFileName"></label>
                         </div>
@@ -76,7 +76,7 @@
                                             <th>:</th>
                                             <td id="txtVisitNo" colspan="5"></td>
                                             @*<td style="display:none" id="txtBarcodeNo"></td>*@
-                                            <td style="display:none" id="txtCentreId"></td>                                       
+                                            <td style="display:none" id="txtCentreId"></td>
                                         </tr>
                                         <tr>
                                             <th>Name Of Unit</th>
@@ -112,7 +112,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </div>                              
+                                </div>
                                 <div class="col-md-12 form-group">
                                     <div class="scroll" style="height: 195px;">
                                         <table class="table table-bordered" id="tblPatientInfo">

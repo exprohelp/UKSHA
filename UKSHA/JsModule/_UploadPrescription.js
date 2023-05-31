@@ -279,8 +279,7 @@ function UploadPresc() {
         var objBO = {};
         objBO.VisitNo = _visitNoUploadPresc;
         objBO.CentreId = _centerIdUploadPresc;
-        objBO.doc_name = $('#ddlPresc option:selected').text();
-        objBO.ImageName = $("#txtFileName").text();
+        objBO.doc_name = $('#ddlPresc option:selected').text();       
         objBO.ServerUrl = window.location.origin;
         objBO.login_id = Active.userId;
         objBO.Logic = 'Insert';

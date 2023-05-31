@@ -272,8 +272,8 @@ namespace UKSHAApi.Repository.Unit
                                 // Cancelling Test in ITDOSE 
                                 ipUnit obj1 = new ipUnit();
                                 obj1.VisitNo = VisitNo;
-                                obj1.from =Convert.ToDateTime("1900/01/01");
-                                obj1.to = Convert.ToDateTime("1900/01/01");
+                                obj1.from = "1900/01/01";
+                                obj1.to = "1900/01/01";
                                 obj1.Logic = "CancelTestInfo";
                                 dataSet ds = Unit_VerificationQueries(obj1);
                                 if (ds.ResultSet.Tables.Count > 0 && ds.ResultSet.Tables[0].Rows.Count > 0)
