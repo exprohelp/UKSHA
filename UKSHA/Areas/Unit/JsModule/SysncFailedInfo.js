@@ -22,13 +22,13 @@ function GetSyncFailedInfo() {
 		success: function (data) {
 			var temp = '';
 			var tbody = '';
-			$.each(data.ResultSet.Table, function (key, val) {
-				if (temp != val.centre_name) {
+            $.each(data.ResultSet.Table, function (key, val) {
+                if (temp != val.centre_name) {
 					tbody += "<tr style='background:#cfe7ef;height: 0px;'>";
 					tbody += "<td colspan='7'>" + val.centre_name + "</td>";
 					tbody += "</tr>";
 					temp = val.centre_name
-				}
+                }
 				tbody += "<tr>";
 				tbody += "<td>" + val.VisitNo + "</td>";
 				tbody += "<td>" + val.PatientName + "</td>";		

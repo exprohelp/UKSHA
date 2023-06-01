@@ -98,7 +98,7 @@ function GetDegreeSpec() {
         }
     });
 }
-function getMemberInfo() {
+function getMemberInfo() {    
     _emp_code = "";
     if ($('#txtSHAId').val() == '') {
         alert('Please Provide SHA Id');
@@ -114,8 +114,7 @@ function getMemberInfo() {
         data: JSON.stringify(pmrssm_id),
         dataType: "json",
         contentType: "application/json;charset=utf-8",
-        success: function (data) {
-            console.log(data)
+        success: function (data) {            
             if (Object.keys(data.ResultSet).length > 0) {
                 if (Object.keys(data.ResultSet.Table).length > 0) {
                     _memberInfo = JSON.stringify(data.ResultSet.Table[0]);
@@ -150,6 +149,7 @@ function getMemberInfo() {
                         }
                         $('#txtSHAId').prop('disabled', true);
                     });
+                    GetSHAPatientId();
                 }
                 else
                     alert('Record Not Found for this SHA Id.');
@@ -412,7 +412,35 @@ function doctorSelection(elem) {
     _doctorId = $(elem).closest('tr').find('td:eq(0)').text();
     $('#selectedDoctor').text($(elem).closest('tr').find('td:eq(1)').text());
 }
-
+function GetSHAPatientId() {  
+    var url = config.baseUrl + "/api/Unit/LabQueries";
+    var objBO = {};
+    objBO.VisitNo = '-';
+    objBO.SHAId = $('#txtSHAId').val(); 
+    objBO.Prm1 = '-';
+    objBO.Prm2 = '-';
+    objBO.from = '1900/01/01';
+    objBO.to = '1900/01/01';
+    objBO.login_id = Active.userId;
+    objBO.Logic = "GetSHAPatientInfo";
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: JSON.stringify(objBO),
+        dataType: "json",
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            if (data.ResultSet.Table.length > 0) {
+                $.each(data.ResultSet.Table, function (key, val) {
+                    $("#txtABHAId").val(val.ABHA_Id);
+                });               
+            }
+        },
+        error: function (response) {
+            alert('Server Error...!');
+        }
+    });
+}
 function Validation() {
     var doctorName = $('#txtDoctorName').val();
     var degree = $('#ddlDegree option:selected').text();

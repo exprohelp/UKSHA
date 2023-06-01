@@ -193,7 +193,7 @@
                                     <label>SHA Id</label>
                                     <div class="flex">
                                         <input type="text" id="txtSHAId" style="border: 1px solid #f0ad4e;border-radius: 0;" class=" form-control" autocomplete="off" placeholder="SHA Id" />
-                                        <button class="btn-warning bn" onclick="getMemberInfo()" id="btnAutoGen" style="width:20%;border: none;margin:0">Get</button>
+                                        <button class="btn-warning bn" onclick="getMemberInfo()" id="btnAutoGen" style="width:35%;border: none;margin:0"><i class="fa fa-check-circle">&nbsp;</i>Get</button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -230,7 +230,10 @@
                                 </div>
                                 <div class="col-md-2">
                                     <label>ABHA Id</label>
-                                    <input type="text" id="txtABHAId" class=" form-control" placeholder="ABHA Id" />
+                                    <div class="flex">
+                                        <input type="text" id="txtABHAId" style="border-color: #f0ad4e;border-radius: 0;" class=" form-control" placeholder="ABHA Id" />
+                                        <button onclick="$('#modalNewABHA').modal('show')" class="btn btn-warning btn-xs" style="border-radius: 0;"><i class="fa fa-check-circle">&nbsp;</i></button>
+                                    </div>
                                 </div>
                                 <div class="col-md-2">
                                     <label>Member Status</label>
@@ -362,7 +365,6 @@
         </div>
     </div>
 </div>
-
 <div id="modalContribution" class="modal fade" role="dialog">
     <div class="modal-dialog" style="width: 430px;">
         <!-- Modal content-->
@@ -384,6 +386,24 @@
                             </thead>
                             <tbody></tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalNewABHA" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content" style="margin-top:4%;">
+            <div class="modal-header">
+                Create New ABHA Id
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 12px 30px;">
+                <div class="row">
+                    <div class="col-md-12 form-group" style="height: 540px;overflow: auto;">
+                      <iframe src="https://abha.abdm.gov.in/register" style="width:100%;height:100%"></iframe>
                     </div>
                 </div>
             </div>
