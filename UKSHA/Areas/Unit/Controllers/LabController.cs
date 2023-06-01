@@ -25,5 +25,9 @@ namespace UKSHA.Areas.Unit.Controllers
         {
             return View();
         }
+        public ActionResult SysncFailedInfo()
+        {
+            return View();
+        }
     }
 }

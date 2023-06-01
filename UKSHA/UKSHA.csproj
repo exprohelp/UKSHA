@@ -123,6 +123,7 @@
     <Content Include="Areas\Unit\JsModule\ITDoseBulkSync.js" />
     <Content Include="Areas\Unit\JsModule\PatientRegistration.js" />
     <Content Include="Areas\Unit\JsModule\PendingUpload.js" />
+    <Content Include="Areas\Unit\JsModule\SysncFailedInfo.js" />
     <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\select2.css" />
     <Content Include="Content\img\bg-panel.png" />
@@ -199,6 +200,7 @@
     <Content Include="Areas\Invoice\Views\Invoice\InvoiceSummary.cshtml" />
     <Content Include="Areas\MIS\Views\Report\RawData.cshtml" />
     <Content Include="Areas\Unit\Views\Lab\ITDoseBulkSync.cshtml" />
+    <Content Include="Areas\Unit\Views\Lab\SysncFailedInfo.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Shared\_header.cshtml" />

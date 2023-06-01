@@ -65,5 +65,12 @@ namespace UKSHAApi.Controllers
             dataSet ds = repositoryLisDBLayer.ITDoseChandanBulkSync(objBO);
             return Request.CreateResponse(HttpStatusCode.OK, ds);
         }
+        [HttpPost]
+        [Route("MarkITDoseSynced")]
+        public HttpResponseMessage MarkITDoseSynced([FromBody] MasterInfo objBO)
+        {
+            string result = repositoryLisDBLayer.MarkITDoseSynced(objBO);
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
     }
 }
