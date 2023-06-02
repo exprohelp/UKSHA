@@ -8,7 +8,6 @@ $(document).ready(function () {
         if (e.keyCode == 13)
             getMemberInfo()
     });
-
     GetCenterMaster();   
     GetTestMaster();
     GetDegreeSpec();
