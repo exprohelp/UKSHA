@@ -8,7 +8,7 @@ $(document).ready(function () {
         if (e.keyCode == 13)
             getMemberInfo()
     });
-//By Nitin1
+//By Nitin12
     GetCenterMaster();   
     GetTestMaster();
     GetDegreeSpec();
