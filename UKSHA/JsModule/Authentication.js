@@ -6,6 +6,7 @@ $(document).ready(function () {
 		$('.login-area user').text(userName);
 		LoadMenu();
 	}
+//by Ajeet
 	$('#txtOTP').prop('disabled', true);
 	$('#OTP').hide();
 	$('#btnVerify').on('click', function () {
